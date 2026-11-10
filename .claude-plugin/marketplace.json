@@ -1,0 +1,11 @@
+{
+  "name": "prompt-master-button",
+  "owner": { "name": "jessearagon86-hub" },
+  "plugins": [
+    {
+      "name": "prompt-master",
+      "source": "./",
+      "description": "One-click Prompt Master button above the Claude Code prompt box that rewrites a rough prompt into a clear, specific one before you send it."
+    }
+  ]
+}
