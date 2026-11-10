@@ -26,6 +26,10 @@ Start a new session afterwards and the button appears above the prompt box.
 
 ## How to use it
 
+**Your first message in a new chat is polished automatically.** The button can't appear before a chat starts, and a chat starts with its first message, so a brand-new chat begins armed: type your rough prompt on the start screen and send it. It is held back, rewritten, and shown above the prompt box with **Send**, **Edit in box**, **Send original** and **Discard**. Resumed chats are left alone.
+
+After that, use the button:
+
 1. Type a rough prompt in the prompt box.
 2. Click **✨ Prompt Master** above the box. The strip shows "Polishing your prompt…" while it works.
 3. Your draft is replaced with the rewrite. Read it, edit if needed, and send. **Undo rewrite** puts your original back.

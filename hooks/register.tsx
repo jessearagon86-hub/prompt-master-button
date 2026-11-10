@@ -237,6 +237,19 @@ export const register: Register = on => {
   on('session.start', async ($, e, next) => {
     // A reload mid-rewrite would otherwise leave the band stuck on "Polishing".
     await update($, mode, m => (m === 'working' ? 'idle' : m))
+
+    // The button can't be drawn before a chat starts, and a chat starts with
+    // its first message. So a brand-new chat arms itself: that first message
+    // is held and polished for review. A resumed or reloaded chat already has
+    // messages and is left alone.
+    try {
+      const earlier = await $.session.messages()
+      if (Array.isArray(earlier) && earlier.length === 0) {
+        await update($, mode, m => (m === 'idle' ? 'armed' : m))
+      }
+    } catch {
+      // Can't tell whether this chat is new: don't arm.
+    }
     return next(e)
   })
 

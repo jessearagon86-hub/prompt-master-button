@@ -1,6 +1,6 @@
 {
   "name": "prompt-master",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "One-click Prompt Master button above the prompt box: rewrites a rough prompt into a clear, specific one before you send it.",
   "types": "./types/index.d.ts"
 }

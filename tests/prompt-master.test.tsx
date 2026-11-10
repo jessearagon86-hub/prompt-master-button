@@ -112,3 +112,27 @@ test('a failed rewrite leaves the draft alone', async ($, on) => {
   expect(await ui.find({ key: 'pm-run' })).toBeDefined()
   await ui.unmount()
 })
+
+test('a brand-new chat starts armed, so its first message is polished', async ($, on) => {
+  mock.clock(on)
+  on('session.messages', () => ({ value: [] }))
+  on('session.start', (_, e) => ({ cwd: e.cwd }))
+
+  await $.session.start({ cwd: '/', surface: 'desktop', isInteractive: true })
+
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
+  expect(await ui.find({ key: 'pm-disarm' })).toBeDefined()
+  await ui.unmount()
+})
+
+test('a resumed chat is not armed', async ($, on) => {
+  mock.clock(on)
+  on('session.messages', () => ({ value: [{ role: 'user', text: 'earlier', toolUses: [] }] }))
+  on('session.start', (_, e) => ({ cwd: e.cwd }))
+
+  await $.session.start({ cwd: '/', surface: 'desktop', isInteractive: true })
+
+  const ui = await $.ui.mount({ ...BAND, surface: 'desktop' })
+  expect(await ui.find({ key: 'pm-run' })).toBeDefined()
+  await ui.unmount()
+})
